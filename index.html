@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>The Stack Overflow Cliff</title>
+  <meta name="description" content="Stack Overflow got 969 new questions in September 2026, down from 186,376 at its peak. An interactive dashboard by Abdullah Butt on what happened to public coding Q&A.">
+  <meta property="og:title" content="The Stack Overflow Cliff">
+  <meta property="og:description" content="969 new questions in Sep 2026, down from 186,376 at the peak. Where did all the questions go? Interactive dashboard by Abdullah Butt.">
+  <meta property="og:image" content="https://YOUR-USERNAME.github.io/stack-overflow-cliff/assets/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230d1430'/%3E%3Cpath d='M6 9 L13 12 L18 19 L26 24' stroke='%23f04d27' stroke-width='3' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="head">
+    <div>
+      <h1>The Stack Overflow <span>Cliff</span></h1>
+      <p class="sub">New questions per month on Stack Overflow, Jan 2018 – Sep 2026</p>
+    </div>
+    <div class="right">
+      <span class="meta"><b>Abdullah Butt</b> · Data Analyst · Stack Exchange API, pulled <span data-pulled>29 Oct 2026</span></span>
+    </div>
+  </header>
+
+  <main id="dash" class="wrap" style="gap:14px">
+    <section class="grid12" id="kpis" aria-label="Key figures"></section>
+
+    <section class="grid12">
+      <article class="tile s8">
+        <div class="tile-head">
+          <div><h2>Monthly new questions</h2><p class="cap">Shaded = after ChatGPT launched (30 Nov 2022)</p></div>
+          <div class="seg" role="group" aria-label="Y-axis scale">
+            <button type="button" id="scale-lin" aria-pressed="true">Linear</button>
+            <button type="button" id="scale-log" aria-pressed="false">Log</button>
+          </div>
+        </div>
+        <div class="chart" id="cliff"></div>
+      </article>
+      <article class="tile s4">
+        <div class="tile-head"><div><h2>Questions per year</h2><p class="cap">Dashed line = May 2020 alone</p></div></div>
+        <div class="chart" id="annual"></div>
+      </article>
+    </section>
+
+    <section class="grid12">
+      <article class="tile s6">
+        <div class="tile-head"><div><h2>Change vs same month a year earlier</h2><p class="cap">The drop keeps getting steeper</p></div></div>
+        <div class="chart" id="yoy"></div>
+      </article>
+      <article class="tile s6">
+        <div class="tile-head"><div><h2>Every month, 2018 – 2026</h2><p class="cap">Faded = fewer questions · outlined: peak and ChatGPT launch</p></div></div>
+        <div class="chart" id="heat"></div>
+      </article>
+    </section>
+
+    <div class="bar">
+      <h2>The analyst's toolkit</h2>
+      <div class="chips" id="chips" role="group" aria-label="Highlight a tag"></div>
+    </div>
+
+    <section class="tile" aria-label="Questions per tag, indexed">
+      <div class="tile-head"><div><h2>Each tag vs its own 2021 level</h2><p class="cap">Quarterly, 2021 average = 100 · big number = share of 2021 volume left</p></div></div>
+      <div class="multis" id="multis"></div>
+    </section>
+
+    <section class="grid12">
+      <article class="tile s7">
+        <div class="tile-head"><div><h2>Share of all questions</h2><p class="cap">Tag share of site questions, 2021 = 100 · above 100 = falling slower than the site</p></div></div>
+        <div class="chart" id="shareidx"></div>
+      </article>
+      <article class="tile s5">
+        <div class="tile-head"><div><h2>When each tag fell</h2><p class="cap">First quarter below 50%, 25% and 10% of its 2021 level</p></div></div>
+        <div class="chart" id="halflife"></div>
+        <div class="legend" id="hl-legend"></div>
+      </article>
+    </section>
+
+    <footer class="foot">
+      <span class="credit">Built by <b>Abdullah Butt</b> · Data Analyst, London · <a href="https://www.linkedin.com/in/abdullahb022" target="_blank" rel="noopener">LinkedIn</a></span>
+      <span>Data: Stack Exchange, CC BY-SA · deleted questions not counted</span>
+    </footer>
+    <details>
+      <summary>Data &amp; method</summary>
+      <p class="method">Stack Exchange API v2.3 <code>/questions?filter=total</code> by creation date: monthly for the site, quarterly per tag. Tags overlap. "Left" = last four quarters (Q4 2025 – Q3 2026) vs the 2021 quarterly average.</p>
+      <div class="tablewrap" id="table"></div>
+    </details>
+  </main>
+
+</div>
+
+<script src="data/so_counts.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
